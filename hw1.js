@@ -102,13 +102,11 @@ class Student{
 
 class Product{
    constructor(input){
-      const array = input.join(',');
+      const array = input.split(',');
       this.name = array[0];
-      this.price = array[1];
+      this.price = Number(array[1]);
       this.availability = array[2];
    }
-
-}
 
     /**
      * *****************
@@ -122,7 +120,7 @@ class Product{
      * Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array 
      */
     static inStock = (products) => {
-        return products.filter(element => element.availability == 'In stock')
+        return products.filter(element => element.availability == 'In Stock')
     }
 
 
@@ -138,7 +136,7 @@ class Product{
      * Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array 
      */
     static halfOff = (products) => {
-        return products.map(element =>new Product('${element.name},${element.price*50%},${element.availability}'))
+        return products.map(element =>new Product(`${element.name},${element.price*0.5},${element.availability}`))
     }
 
     /**
@@ -155,7 +153,7 @@ class Product{
      * Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat (currency formatting)
      */
     static printProducts = (products) => {
-       
+        products.map(element => console.log(`Product: ${element.name}, Cost: $${element.price.toFixed(2)}, Availability: ${element.availability === 'In Stock' ? 'Yes' : 'No'}`))
     }
 
  };
